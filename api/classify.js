@@ -10,13 +10,13 @@ const axios = require('axios');
 //app.get('/api/classify', async (req, res) 
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    const { name } = req.query;
+    const { name } = req.query.name?.trim();
 
     //missing name or empty name
-    if (!name || name.trim() === '') {
+    if (!name) {
         return res.status(400).json({
             status: 'error',
-            message: 'Bad Request:Missing or empty name parameter'
+            message: 'Name is required'
         });
     }
 
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     if (typeof name !== 'string') {
         return res.status(422).json({
             status: 'error',
-            message: 'Unprocessable entity: name must be a string'
+            message: 'Name must be a string'
         });
     }
 
@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     const {gender, probability, count} = data;
 
     if (!gender || count === 0) {
-        return res.status(404).json({
+        return res.status(400).json({
             status: 'error',
             message: 'No data found for the given name'
         });
