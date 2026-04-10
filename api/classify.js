@@ -10,7 +10,7 @@ const axios = require('axios');
 //app.get('/api/classify', async (req, res) 
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    const { name } = req.query.name?.trim();
+   const name = req.query?.name?.trim();
 
     //missing name or empty name
     if (!name) {
@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
     if (!gender || count === 0) {
         return res.status(400).json({
             status: 'error',
-            message: 'No data found for the given name'
+            message: 'No prediction available for the provided name'
         });
     }
     

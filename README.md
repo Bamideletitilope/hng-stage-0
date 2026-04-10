@@ -1,6 +1,8 @@
 Name Classifier API
 This is a Node.js/Express microservice that predicts the gender of a name using the Genderize.io API. This service processes raw data to determine prediction confidence and ensures standardized error handling.
 
+Public API Base URL:https://hng-stage-0-rouge.vercel.app/api/classify
+
 ** Features
 ~ Gender Prediction: It integrates with the Genderize.io API.
 
